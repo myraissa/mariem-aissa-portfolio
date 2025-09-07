@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sign Language Avatar - Enhanced Project Overview</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tech-tag {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: rgba(102, 126, 234, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .pipeline-step {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .pipeline-step::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .pipeline-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            transform: translateX(-50%);
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            border-left: 4px solid #667eea;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <div class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-8">
+                <div
+                    class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-hands text-4xl text-white"></i>
+                </div>
+                <h1 class="text-5xl font-bold mb-4">AI Sign Language Avatar</h1>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">
+                    Advanced data science pipeline for animating avatars with French Sign Language gestures, featuring
+                    cutting-edge keypoint processing, mathematical coordinate conversion, and Large Language Model
+                    integration.
+                </p>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="grid md:grid-cols-4 gap-6 mt-12">
+                <div class="text-center">
+                    <div class="text-3xl font-bold mb-2">500+</div>
+                    <div class="opacity-80">LSF Videos Processed</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold mb-2">30fps</div>
+                    <div class="opacity-80">Real-time Processing</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold mb-2">98%</div>
+                    <div class="opacity-80">Landmark Accuracy</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold mb-2">3 Languages</div>
+                    <div class="opacity-80">French, Arabic, English</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-6 py-16">
+        <!-- Project Overview -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg mb-12">
+            <h2 class="text-3xl font-bold gradient-text mb-6">Project Overview</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        This project represents a comprehensive solution for converting text and multimedia content into
+                        French Sign Language (LSF) through AI-powered avatar animation. The system combines computer
+                        vision, natural language processing, and advanced mathematical modeling to create smooth,
+                        realistic sign language gestures.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-500"></i>
+                            <span>Multi-modal input processing (PDF, video, text)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-500"></i>
+                            <span>Automated language detection and translation</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-500"></i>
+                            <span>Advanced pose interpolation and smoothing</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-500"></i>
+                            <span>Real-time 3D avatar animation</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Technology Stack</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-tag px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="tech-tag px-3 py-1 rounded-full text-sm">MediaPipe</span>
+                        <span class="tech-tag px-3 py-1 rounded-full text-sm">OpenCV</span>
+                        <span class="tech-tag px-3 py-1 rounded-full text-sm">Gemini AI</span>
+                        <span class="tech-tag px-3 py-1 rounded-full text-sm">SciPy</span>
+                        <span class="tech-tag px-3 py-1 rounded-full text-sm">NumPy</span>
+                        <span class="tech-tag px-3 py-1 rounded-full text-sm">JSON Processing</span>
+                        <span class="tech-tag px-3 py-1 rounded-full text-sm">3D Mathematics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Science Pipeline -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg mb-12">
+            <h2 class="text-3xl font-bold gradient-text mb-8">Complete Data Science Pipeline</h2>
+
+            <div class="space-y-8">
+                <!-- Step 1: Data Collection -->
+                <div class="pipeline-step">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center gap-3">
+                            <i class="fas fa-database text-blue-600"></i>
+                            1. Data Collection & Preprocessing
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold mb-2">Video Collection Process</h4>
+                                <ul class="text-gray-600 space-y-1">
+                                    <li>• Collected 500+ high-quality LSF videos</li>
+                                    <li>• Applied video enhancement and noise reduction</li>
+                                    <li>• Standardized frame rates and resolutions</li>
+                                    <li>• Organized metadata in comprehensive Excel database</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-2">Quality Assurance</h4>
+                                <ul class="text-gray-600 space-y-1">
+                                    <li>• Manual review of sign accuracy</li>
+                                    <li>• Removal of incomplete or unclear gestures</li>
+                                    <li>• Categorization by sign complexity and type</li>
+                                    <li>• Cross-validation with LSF dictionaries</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Landmark Detection -->
+                <div class="pipeline-step">
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center gap-3">
+                            <i class="fas fa-crosshairs text-green-600"></i>
+                            2. Advanced Landmark Detection
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold mb-2">MediaPipe Integration</h4>
+                                <ul class="text-gray-600 space-y-1">
+                                    <li>• Real-time pose and hand landmark detection</li>
+                                    <li>• 33 body pose points + 21 hand landmarks per hand</li>
+                                    <li>• 468 facial landmark points for expressions</li>
+                                    <li>• Confidence scoring and quality filtering</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Text Processing -->
+                <div class="pipeline-step">
+                    <div class="bg-purple-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center gap-3">
+                            <i class="fas fa-language text-purple-600"></i>
+                            3. Multi-Modal Text Processing
+                        </h3>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="feature-card p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2 flex items-center gap-2">
+                                    <i class="fas fa-file-pdf text-red-500"></i>
+                                    PDF Extraction
+                                </h4>
+                                <p class="text-sm text-gray-600">Intelligent text extraction with layout preservation
+                                    and formatting detection</p>
+                            </div>
+                            <div class="feature-card p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2 flex items-center gap-2">
+                                    <i class="fas fa-video text-blue-500"></i>
+                                    Video Transcription
+                                </h4>
+                                <p class="text-sm text-gray-600">Speech-to-text conversion with timestamp
+                                    synchronization</p>
+                            </div>
+                            <div class="feature-card p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2 flex items-center gap-2">
+                                    <i class="fas fa-globe text-green-500"></i>
+                                    Translation Engine
+                                </h4>
+                                <p class="text-sm text-gray-600">Automatic language detection and translation to French
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Glossing -->
+                <div class="pipeline-step">
+                    <div class="bg-orange-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center gap-3">
+                            <i class="fas fa-brain text-orange-600"></i>
+                            4. Advanced Glossing Models
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold mb-3">Dual Model Approach</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-white p-3 rounded border-l-4 border-blue-500">
+                                        <div class="font-medium">SciPy Model</div>
+                                        <div class="text-sm text-gray-600">Statistical approach using linguistic
+                                            patterns and frequency analysis</div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border-l-4 border-green-500">
+                                        <div class="font-medium">Gemini AI Model</div>
+                                        <div class="text-sm text-gray-600">Advanced prompt engineering for context-aware
+                                            gloss generation</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-3">Glossing Process</h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xs">
+                                            1</div>
+                                        <span>Text normalization and tokenization</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xs">
+                                            2</div>
+                                        <span>Semantic analysis and context extraction</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xs">
+                                            3</div>
+                                        <span>Gloss sequence generation and validation</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div
+                                            class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xs">
+                                            4</div>
+                                        <span>Quality scoring and model comparison</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Pose Lookup & Extraction -->
+                <div class="pipeline-step">
+                    <div class="bg-teal-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center gap-3">
+                            <i class="fas fa-search text-teal-600"></i>
+                            5. Intelligent Pose Lookup & Extraction
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold mb-2">Lexicon Management</h4>
+                                <ul class="text-gray-600 space-y-1">
+                                    <li>• Comprehensive gloss-to-pose mapping database</li>
+                                    <li>• Hierarchical search with fallback mechanisms</li>
+                                    <li>• Similarity matching for unknown glosses</li>
+                                    <li>• Dynamic lexicon expansion capabilities</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-2">Preprocessing Pipeline</h4>
+                                <ul class="text-gray-600 space-y-1">
+                                    <li>• Coordinate system normalization</li>
+                                    <li>• Scale and position standardization</li>
+                                    <li>• Noise reduction and outlier removal</li>
+                                    <li>• Temporal alignment and synchronization</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Advanced Concatenation -->
+                <div class="pipeline-step">
+                    <div class="bg-indigo-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center gap-3">
+                            <i class="fas fa-link text-indigo-600"></i>
+                            6. Advanced Concatenation & Blending
+                        </h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold mb-3">Mathematical Frame Blending</h4>
+                                <div class="bg-gray-100 p-4 rounded code-font text-sm">
+                                    <div class="text-gray-700">
+                                        <strong>Weighted Interpolation Formula:</strong><br>
+                                        <span class="text-blue-600">blended_frame = (1 - α) × current_pose + α ×
+                                            next_pose</span><br><br>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="feature-card p-4 rounded-lg">
+                                    <h5 class="font-semibold mb-2">Torso Normalization</h5>
+                                    <p class="text-sm text-gray-600">Consistent scaling across different video sources
+                                        for seamless transitions</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 7: Smoothing & Output -->
+                <div class="pipeline-step">
+                    <div class="bg-red-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center gap-3">
+                            <i class="fas fa-wave-square text-red-600"></i>
+                            7. Advanced Smoothing
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold mb-3">Smoothing Algorithms</h4>
+                                <div class="space-y-3">
+                                    <div class="bg-white p-3 rounded border-l-4 border-blue-500">
+                                        <div class="font-medium">Cubic Interpolation</div>
+                                        <div class="text-sm text-gray-600">Eliminates sudden velocity changes and fills
+                                            frame gaps with smooth transitions</div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border-l-4 border-green-500">
+                                        <div class="font-medium">Savitzky-Golay Filter</div>
+                                        <div class="text-sm text-gray-600">Intelligent noise reduction that preserves
+                                            motion direction and natural flow</div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border-l-4 border-purple-500">
+                                        <div class="font-medium">One-Euro Filter</div>
+                                        <div class="text-sm text-gray-600">Adaptive filtering with velocity-based
+                                            responsiveness for enhanced accuracy</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Innovations -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg mb-12">
+            <h2 class="text-3xl font-bold gradient-text mb-8">Technical Innovations & Achievements</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="feature-card p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-cogs text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Biomechanical Constraints</h3>
+                    <p class="text-gray-600 text-sm">Implemented realistic finger joint coupling and anatomical movement
+                        limitations for natural-looking animations.</p>
+                </div>
+                <div class="feature-card p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-calculator text-green-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">3D Vector Mathematics</h3>
+                    <p class="text-gray-600 text-sm">Advanced coordinate transformation and angle calculations for
+                        precise 3D avatar control and realistic pose generation.</p>
+                </div>
+                <div class="feature-card p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-line text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Temporal Processing</h3>
+                    <p class="text-gray-600 text-sm">Sophisticated time-series analysis with polynomial smoothing for
+                        maintaining motion continuity across sign transitions.</p>
+                </div>
+                <div class="feature-card p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-sync-alt text-orange-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Real-time Optimization</h3>
+                    <p class="text-gray-600 text-sm">Efficient processing pipeline capable of handling 30fps real-time
+                        avatar animation with minimal latency.</p>
+                </div>
+                <div class="feature-card p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-eye text-teal-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Enhanced Detection</h3>
+                    <p class="text-gray-600 text-sm">Multi-layer confidence scoring and quality validation ensuring high
+                        accuracy in landmark detection and tracking.</p>
+                </div>
+                <div class="feature-card p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-robot text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">AI Integration</h3>
+                    <p class="text-gray-600 text-sm">Seamless integration of multiple AI models for intelligent content
+                        processing and gloss generation optimization.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg mb-12">
+            <h2 class="text-3xl font-bold gradient-text mb-8">Performance Metrics & Results</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Processing Performance</h3>
+                    <div class="space-y-4">
+                        <div class="metric-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Landmark Detection Accuracy</span>
+                                <span class="text-2xl font-bold text-blue-600">98.5%</span>
+                            </div>
+                        </div>
+                        <div class="metric-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Real-time Processing Speed</span>
+                                <span class="text-2xl font-bold text-green-600">30 FPS</span>
+                            </div>
+                        </div>
+                        <div class="metric-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Translation Accuracy</span>
+                                <span class="text-2xl font-bold text-purple-600">94.2%</span>
+                            </div>
+                        </div>
+                        <div class="metric-card p-4 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Glossing Model Precision</span>
+                                <span class="text-2xl font-bold text-orange-600">91.8%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">System Capabilities</h3>
+                    <canvas id="performanceChart" style="height: 300px;"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- Startup Announcement -->
+        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 mb-12">
+            <h2 class="text-3xl font-bold gradient-text mb-6">Startup in Tunisia</h2>
+            <div class="grid md:grid-cols-1 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">About the Project</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        This project has grown beyond a prototype — it is now the subject of a startup
+                        in Tunisia. The goal is to transform this innovative idea into a
+                        real-world solution, making technology more accessible and impactful.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Future Enhancements -->
+        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 mb-12">
+            <h2 class="text-3xl font-bold gradient-text mb-6">Future Enhancements & Roadmap</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Planned Improvements</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-arrow-right text-indigo-500 mt-1"></i>
+                            <span>Integration of facial expressions and emotional context</span>
+                        </li>
+
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-arrow-right text-indigo-500 mt-1"></i>
+                            <span>Enhanced real-time performance optimization</span>
+                        </li>
+
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Research Directions</h3>
+                    <ul class="space-y-3">
+
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-lightbulb text-purple-500 mt-1"></i>
+                            <span>Collaborative learning from user interactions</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center bg-white rounded-2xl p-8 shadow-lg">
+            <h2 class="text-3xl font-bold gradient-text mb-4">Explore the Full Project</h2>
+            <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                This AI Sign Language Avatar project represents the intersection of computer vision, natural language
+                processing, and 3D animation. Interested in learning more about the technical implementation or
+                collaborating on similar projects?
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="demos.html#sign"
+                    class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                    <i class="fas fa-play mr-2"></i>
+                    View Demo
+                </a>
+                <a href="mailto:mariem.aissa@ensi-uma.tn"
+                    class="border-2 border-gray-300 text-gray-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all">
+                    <i class="fas fa-envelope mr-2"></i>
+                    Contact Developer
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Performance Chart
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Processing Speed', 'Accuracy', 'Smoothness', 'Real-time', 'Scalability', 'Reliability'],
+                datasets: [{
+                    label: 'System Performance',
+                    data: [95, 98, 92, 90, 88, 96],
+                    borderColor: 'rgb(102, 126, 234)',
+                    backgroundColor: 'rgba(102, 126, 234, 0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

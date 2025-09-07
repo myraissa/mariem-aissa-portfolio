@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Demonstrations - Interactive AI & ML Demos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .demo-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .demo-section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .mockup-screen {
+            background: #1a202c;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .typing {
+            overflow: hidden;
+            border-right: 2px solid #667eea;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: #667eea;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 float">
+                <i class="fas fa-rocket mr-4"></i>
+                Project Demonstrations
+            </h1>
+            <p class="text-xl md:text-2xl max-w-4xl mx-auto opacity-90">
+                Interactive showcases of cutting-edge AI & Machine Learning solutions
+            </p>
+            <div class="mt-8">
+                <button onclick="scrollToNavigation()"
+                    class="bg-white text-purple-700 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition transform hover:scale-105">
+                    <i class="fas fa-play mr-2"></i>
+                    Explore Demos
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Demo Navigation -->
+    <nav id="navigation" class="bg-white shadow-lg sticky top-0 z-50 py-4">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="showDemo('therapeutic-demo')"
+                    class="nav-btn px-4 py-3 rounded-lg font-medium transition bg-gray-200 hover:bg-gray-300 text-gray-700">
+                    <i class="fas fa-hands-helping mr-2"></i>
+                    therapeutic demo
+                </button>
+                <button onclick="showDemo('wind')"
+                    class="nav-btn px-4 py-3 rounded-lg font-medium transition bg-gray-200 hover:bg-gray-300 text-gray-700">
+                    <i class="fas fa-wind mr-2"></i>
+                    Wind Forecasting
+                </button>
+                <button onclick="showDemo('xray')"
+                    class="nav-btn px-4 py-3 rounded-lg font-medium transition bg-gray-200 hover:bg-gray-300 text-gray-700">
+                    <i class="fas fa-x-ray mr-2"></i>
+                    X-ray Classifier Competition
+                </button>
+                <button onclick="showDemo('sign')"
+                    class="nav-btn px-4 py-3 rounded-lg font-medium transition bg-gray-200 hover:bg-gray-300 text-gray-700">
+                    <i class="fas fa-hands mr-2"></i>
+                    Sign Language
+                </button>
+                <button onclick="showDemo('document')"
+                    class="nav-btn px-4 py-3 rounded-lg font-medium transition bg-gray-200 hover:bg-gray-300 text-gray-700">
+                    <i class="fas fa-file-contract mr-2"></i>
+                    Document Copilot
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Demo Content -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- Welcome Section -->
+        <section id="welcome" class="text-center py-20">
+            <div class="max-w-4xl mx-auto">
+                <i class="fas fa-cube text-8xl gradient-text mb-8 float"></i>
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">Welcome to Interactive Demos</h2>
+                <p class="text-xl text-gray-600 mb-8">
+                    Select a project from the navigation above to explore detailed functionality,
+                    see live demonstrations, and understand the technical implementation.
+                </p>
+                <div class="grid md:grid-cols-3 gap-6 mt-12">
+                    <div class="demo-card p-6 rounded-xl">
+                        <i class="fas fa-brain text-4xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">AI-Powered</h3>
+                        <p class="text-gray-600">Advanced machine learning algorithms and neural networks</p>
+                    </div>
+                    <div class="demo-card p-6 rounded-xl">
+                        <i class="fas fa-globe text-4xl text-green-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">International</h3>
+                        <p class="text-gray-600">Projects deployed across multiple countries and continents</p>
+                    </div>
+                    <div class="demo-card p-6 rounded-xl">
+                        <i class="fas fa-chart-line text-4xl text-purple-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Impact-Driven</h3>
+                        <p class="text-gray-600">Real-world solutions with measurable business impact</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Volunteer System Demo -->
+        <!-- Therapeutic Knowledge Builder Demo -->
+        <section id="therapeutic-demo" class="demo-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center bg-green-100 text-green-700 px-6 py-3 rounded-full mb-6">
+                        <i class="fas fa-hands-helping mr-2"></i>
+                        International - USA
+                    </div>
+                    <h2 class="text-5xl font-bold gradient-text mb-4">Therapeutic Knowledge Builder</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Automated pipeline for collecting psychology resources, generating clean datasets, and training
+                        a language model for therapist-like interactions and psychological insights.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 mb-12">
+                    <!-- Demo Interface -->
+                    <div class="demo-card p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-6 flex items-center">
+                            <i class="fas fa-desktop text-blue-500 mr-3"></i>
+                            Data Preparation Demo (Work in Progress)
+                        </h3>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <!-- Screenshot of the scraping script -->
+                            <div class="bg-gray-700 p-4 rounded-lg text-center">
+                                <i class="fas fa-code text-4xl text-gray-400 mb-2"></i>
+                                <p class="text-sm text-gray-300 mb-2">Screenshot of the scraping script running</p>
+                                <img src="images/script.png" alt="Scraping Script Screenshot"
+                                    class="rounded-lg mx-auto">
+                            </div>
+
+                            <!-- Screenshot of the folder with books/data -->
+                            <div class="bg-gray-700 p-4 rounded-lg text-center">
+                                <i class="fas fa-folder-open text-4xl text-gray-400 mb-2"></i>
+                                <p class="text-sm text-gray-300 mb-2">Collected dataset folder with psychology books</p>
+                                <img src="images/books.png" alt="Dataset Folder Screenshot" class="rounded-lg mx-auto">
+                            </div>
+                        </div>
+
+                        <p class="mt-4 text-gray-400 text-sm text-center">
+                            This demo shows the current progress on data scraping and dataset preparation for the model.
+                        </p>
+                    </div>
+
+                    <!-- Technical Details -->
+                    <div class="space-y-8">
+                        <div class="demo-card p-8 rounded-2xl">
+                            <h3 class="text-2xl font-bold mb-6 flex items-center">
+                                <i class="fas fa-cogs text-purple-500 mr-3"></i>
+                                Pipeline & Architecture
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-globe text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Data Collection</h4>
+                                        <p class="text-sm text-gray-600">Scraping psychology books from multiple sources
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-database text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Dataset Generation</h4>
+                                        <p class="text-sm text-gray-600">Cleaning, structuring, and formatting data for
+                                            training</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-robot text-purple-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Model Training</h4>
+                                        <p class="text-sm text-gray-600">Still in progress</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Wind Forecasting Demo -->
+        <section id="wind" class="demo-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center bg-blue-100 text-blue-700 px-6 py-3 rounded-full mb-6">
+                        <i class="fas fa-flag-usa mr-2"></i>
+                        Texas, USA Project
+                    </div>
+                    <h2 class="text-5xl font-bold gradient-text mb-4">Wind Energy Forecasting</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Advanced predictive analytics for energy trading optimization
+                    </p>
+                    <p class="text-md text-gray-500 max-w-3xl mx-auto mt-2">
+                        I contributed to forecast data processing and identifying similar days for energy trading. This
+                        work is still in progress.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <!-- GIF showing Texas wind patterns -->
+                    <div class="demo-card p-4 rounded-2xl flex flex-col items-center justify-center">
+                        <img src="images/combined_wind_animation_2024-01-01.gif" alt="Texas Wind Forecast GIF"
+                            class="rounded-lg shadow-lg mb-4 w-full">
+                        <p class="text-gray-500 text-center text-sm">
+                            Dynamic wind pattern visualization across Texas.
+                        </p>
+                    </div>
+
+                    <!-- Screenshot of interface -->
+                    <div class="demo-card p-4 rounded-2xl flex flex-col items-center justify-center">
+                        <img src="images/image.png" alt="Wind Forecast Interface Screenshot"
+                            class="rounded-lg shadow-lg mb-4 w-full">
+                        <p class="text-gray-500 text-center text-sm">
+                            Screenshot of the forecasting interface.
+                        </p>
+                    </div>
+                </div>
+
+                <p class="text-md text-gray-500 max-w-3xl mx-auto mt-2">
+                    I collaborated with the team on this project, contributing to forecast data processing and
+                    identifying similar days to support energy trading decisions. This work is ongoing.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- X-ray Classifier Demo -->
+        <section id="xray" class="demo-section">
+            <!-- X-ray Classifier Demo -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl border border-gray-200">
+                <h3 class="text-3xl font-bold mb-6 text-gray-800">Medical X-ray Classifier competition Demo</h3>
+                <p class="text-md text-gray-500 max-w-3xl mx-auto mb-6">
+                    I contributed to the development of this project as part of a team creating a Kaggle competition
+                    for an Indian client, helping to design the dataset and evaluation pipeline.
+                    <a href="https://www.kaggle.com/competitions/grand-xray-slam-division-a" target="_blank"
+                        class="text-blue-500 underline">View the competition</a>.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- Sign Language Demo -->
+        <section id="sign" class="demo-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center bg-purple-100 text-purple-700 px-6 py-3 rounded-full mb-6">
+                        <i class="fas fa-language mr-2"></i>
+                        French Sign Language (LSF)
+                    </div>
+                    <h2 class="text-5xl font-bold gradient-text mb-4">AI Sign Language Avatar</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Revolutionary 3D avatar animation system for accessible communication
+                    </p>
+                    <p class="text-md text-gray-500 max-w-3xl mx-auto mt-2">
+                        This is our first output. We are actively optimizing for smoother animations and better
+                        performance.
+                    </p>
+                </div>
+
+                <div class="demo-card p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-user text-purple-500 mr-3"></i>
+                        Demo Example
+                    </h3>
+
+                    <!-- Video Container -->
+                    <div id="video-container">
+                        <!-- Skeleton Video (always first) -->
+                        <div class="mb-6">
+                            <video controls class="w-full rounded-lg shadow-lg">
+                                <source src="videos/demo1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="space-y-3">
+                        <button class="w-full bg-purple-500 hover:bg-purple-600 text-white py-3 rounded-lg transition"
+                            onclick="showAvatar()">
+                            <i class="fas fa-user-astronaut mr-2"></i>
+                            Show Avatar
+                        </button>
+                        <button class="w-full bg-gray-500 hover:bg-gray-600 text-white py-3 rounded-lg transition"
+                            onclick="nextExample()">
+                            <i class="fas fa-arrow-right mr-2"></i>
+                            Next Example
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            // Array of demo examples
+            const examples = [
+                { skeleton: 'videos/demo1.mp4', avatar: 'videos/julieDemo.mp4' },
+                { skeleton: 'videos/demo2.mp4', avatar: 'videos/bileldemo.mp4' }
+            ];
+
+            let currentIndex = 0;
+            let avatarShown = false;
+
+            function showAvatar() {
+                if (avatarShown) return; // already shown
+                const container = document.getElementById('video-container');
+                const video = document.createElement('div');
+                video.className = 'mb-6';
+                video.innerHTML = `
+            <video controls class="w-full rounded-lg shadow-lg">
+                <source src="${examples[currentIndex].avatar}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        `;
+                container.appendChild(video);
+                avatarShown = true;
+            }
+
+            function nextExample() {
+                currentIndex++;
+                if (currentIndex >= examples.length) currentIndex = 0; // loop back
+                const container = document.getElementById('video-container');
+                container.innerHTML = `
+            <div class="mb-6">
+                <video controls class="w-full rounded-lg shadow-lg">
+                    <source src="${examples[currentIndex].skeleton}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        `;
+                avatarShown = false;
+            }
+        </script>
+
+
+        <!-- Document Copilot Demo -->
+        <section id="document" class="demo-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center bg-indigo-100 text-indigo-700 px-6 py-3 rounded-full mb-6">
+                        <i class="fas fa-robot mr-2"></i>
+                        OpenAI Integration
+                    </div>
+                    <h2 class="text-5xl font-bold gradient-text mb-4">AI Document Copilot</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Intelligent regulatory document assistant with advanced AI capabilities
+                    </p>
+                    <p class="text-md text-gray-500 max-w-3xl mx-auto mt-2">
+                        For privacy reasons, we cannot share detailed screenshots or interactive demos.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 mb-12">
+                    <!-- Placeholder Image -->
+                    <div class="demo-card p-8 rounded-2xl flex flex-col items-center justify-center">
+                        <img src="images/chat.png" alt="Document Copilot Demo" class="rounded-lg shadow-lg mb-6 w-full">
+                        <p class="text-gray-500 text-center">This image is a placeholder representing the regulatoryAI
+                            Copilot interface.</p>
+                    </div>
+
+                    <!-- Info / Features -->
+                    <div class="space-y-6">
+                        <div class="demo-card p-6 rounded-2xl">
+                            <h3 class="text-xl font-bold mb-4 flex items-center">
+                                <i class="fas fa-info-circle text-purple-500 mr-3"></i>
+                                Key Features
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Document assistant and compliance checking</li>
+                                <li>AI-powered template generation</li>
+                                <li>Risk assessment guidance</li>
+                                <li>Usage analytics and performance tracking</li>
+                            </ul>
+                        </div>
+
+                        <div class="demo-card p-6 rounded-2xl">
+                            <h3 class="text-xl font-bold mb-4 flex items-center">
+                                <i class="fas fa-lock text-green-500 mr-3"></i>
+                                Privacy Note
+                            </h3>
+                            <p class="text-gray-600">
+                                To respect company privacy, the interactive demo and actual document content are not
+                                publicly shared.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-8">
+                <h3 class="text-3xl font-bold mb-4">Ready to Collaborate?</h3>
+                <p class="text-xl opacity-90 mb-6">Let's build the next generation of AI solutions together</p>
+                <div class="space-x-4">
+                    <!-- Email Button -->
+                    <a href="mailto:mariem.aissa@ensi-uma.com" target="_blank"
+                        class="bg-white text-purple-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition inline-flex items-center">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Contact Me
+                    </a>
+
+                    <!-- GitHub Button -->
+                    <a href="https://github.com/myraissa" target="_blank"
+                        class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-700 transition inline-flex items-center">
+                        <i class="fab fa-github mr-2"></i>
+                        View GitHub
+                    </a>
+                </div>
+
+            </div>
+            <div class="border-t border-white border-opacity-20 pt-8">
+                <p class="opacity-75">&copy; 2025 AI Project Demonstrations. Showcasing innovation in machine learning
+                    and artificial intelligence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Demo navigation functionality
+        function showDemo(demoId) {
+            // Hide all demo sections
+            const sections = document.querySelectorAll('.demo-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Hide welcome section
+            document.getElementById('welcome').style.display = 'none';
+
+            // Show selected demo
+            document.getElementById(demoId).classList.add('active');
+
+            // Update navigation buttons
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Scroll to navigation
+            document.getElementById('navigation').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToNavigation() {
+            document.getElementById('navigation').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initialize charts when page loads
+        window.addEventListener('load', function () {
+            initializeCharts();
+        });
+
+        function initializeCharts() {
+            // Wind Chart
+            const windCtx = document.getElementById('windChart');
+            if (windCtx) {
+                new Chart(windCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                        datasets: [{
+                            label: 'Wind Speed (mph)',
+                            data: [12, 15, 18, 22, 19, 16],
+                            borderColor: '#3B82F6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }, {
+                            label: 'Energy Output (MW)',
+                            data: [1.8, 2.2, 2.7, 3.1, 2.8, 2.4],
+                            borderColor: '#10B981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Document Chart
+            const docCtx = document.getElementById('documentChart');
+            if (docCtx) {
+                new Chart(docCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Compliance', 'Risk Assessment', 'Templates', 'Reviews'],
+                        datasets: [{
+                            data: [35, 25, 20, 20],
+                            backgroundColor: ['#3B82F6', '#10B981', '#F59E0B', '#EF4444']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+            }
+
+            // Vision Chart
+            const visionCtx = document.getElementById('visionChart');
+            if (visionCtx) {
+                new Chart(visionCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Persons', 'Vehicles', 'Objects', 'Faces'],
+                        datasets: [{
+                            label: 'Detections Today',
+                            data: [156, 89, 234, 78],
+                            backgroundColor: ['#3B82F6', '#10B981', '#F59E0B', '#8B5CF6']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Add smooth scrolling to all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all demo cards
+        document.querySelectorAll('.demo-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>
