@@ -10,8 +10,10 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Flask app
-app = Flask(__name__, static_folder=".", static_url_path="/")
+# Flask app - adjust paths for backend directory structure
+app = Flask(__name__, 
+            static_folder="../",  # Go up one level to serve root files
+            static_url_path="/")
 CORS(app)
 
 # HuggingFace API
@@ -45,7 +47,10 @@ def chat():
             timeout=30
         )
         if not response.ok:
-            return jsonify({"error": f"HuggingFace API error: {response.status_code}", "details": response.text}), response.status_code
+            return jsonify({
+                "error": f"HuggingFace API error: {response.status_code}", 
+                "details": response.text
+            }), response.status_code
         return jsonify(response.json())
 
     except requests.exceptions.Timeout:
@@ -61,11 +66,13 @@ def health():
 
 @app.route("/")
 def serve_index():
-    return send_from_directory(".", "index.html")
+    # Serve from parent directory
+    return send_from_directory("..", "index.html")
 
 @app.route("/<path:path>")
 def serve_static(path):
-    return send_from_directory(".", path)
+    # Serve static files from parent directory
+    return send_from_directory("..", path)
 
 # ---------- Run Server ----------
 
@@ -76,4 +83,4 @@ if __name__ == "__main__":
         print("✅ HuggingFace API key loaded successfully")
 
     port = int(os.getenv("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=port, debug=False)  # debug=False for production
