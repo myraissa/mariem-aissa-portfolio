@@ -10,18 +10,24 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Flask app - adjust paths for backend directory structure
-app = Flask(__name__, 
-            static_folder="../",  # Go up one level to serve root files
+# Flask app
+app = Flask(__name__,
+            static_folder="../",          # serve files from project root
             static_url_path="/")
 CORS(app)
+import pathlib
+BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
+app = Flask(
+    __name__,
+    static_folder=str(BASE_DIR),
+    static_url_path="/"
+)
 
 # HuggingFace API
 HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 API_URL = "https://router.huggingface.co/v1/chat/completions"
 
 # ---------- API Endpoints ----------
-
 @app.route("/api/chat", methods=["POST"])
 def chat():
     data = request.get_json()
@@ -48,7 +54,7 @@ def chat():
         )
         if not response.ok:
             return jsonify({
-                "error": f"HuggingFace API error: {response.status_code}", 
+                "error": f"HuggingFace API error: {response.status_code}",
                 "details": response.text
             }), response.status_code
         return jsonify(response.json())
@@ -58,29 +64,25 @@ def chat():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 @app.route("/api/health", methods=["GET"])
 def health():
     return jsonify({"status": "ok", "message": "Chatbot API is running"})
 
-# ---------- Serve Frontend ----------
 
+# ---------- Serve Frontend ----------
 @app.route("/")
 def serve_index():
-    # Serve from parent directory
     return send_from_directory("..", "index.html")
+
 
 @app.route("/<path:path>")
 def serve_static(path):
-    # Serve static files from parent directory
     return send_from_directory("..", path)
 
-# ---------- Run Server ----------
 
-if __name__ == "__main__":
-    if not HUGGINGFACE_API_KEY:
-        print("⚠️  WARNING: HUGGINGFACE_API_KEY not set in environment!")
-    else:
-        print("✅ HuggingFace API key loaded successfully")
-
-    port = int(os.getenv("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=False)  # debug=False for production
+# ---------- Startup diagnostics ----------
+if not HUGGINGFACE_API_KEY:
+    print("WARNING: HUGGINGFACE_API_KEY not set in environment!")
+else:
+    print("HuggingFace API key loaded successfully")
